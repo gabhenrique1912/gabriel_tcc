@@ -1,0 +1,20 @@
+# Pasta de bibliotecas locais (instalar via requirements.txt)
+pylibs/
+
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+
+# Ambientes virtuais
+.env
+.venv
+env/
+venv/
+
+# Resultados de treino do YOLO (gerados automaticamente)
+runs/
+
+# Distribuição / packaging
+*.egg-info/
+dist/
+build/

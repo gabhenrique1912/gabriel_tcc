@@ -11,8 +11,14 @@ def main():
     model = YOLO("yolov8n.pt")
 
     # Use the model
-    model.train(data="epi.yaml", epochs=30)  # train the model
-    metrics = model.val()  # evaluate model performance on the validation set
+    model.train(
+        data="epi.yaml",
+        epochs=10,
+        workers=0,
+        batch=4,
+        imgsz=512
+    )
+    metrics = model.val(batch=9)  # evaluate model performance on the validation set
     # results = model("https://ultralytics.com/images/bus.jpg")  # predict on an image
     # path = model.export(format="onnx")  # export the model to ONNX format
     # print("path", path)

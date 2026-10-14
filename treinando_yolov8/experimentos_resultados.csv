@@ -1,0 +1,1 @@
+nome,model,imgsz,epochs,batch,mAP50,mAP50-95,precision,recall,tempo_min,status,pasta_runs
