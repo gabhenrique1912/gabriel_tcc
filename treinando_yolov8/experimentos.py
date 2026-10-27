@@ -1,5 +1,5 @@
 """
-Ablation study — treina múltiplas configurações do YOLOv8 e salva
+Treina múltiplas configurações do YOLOv8 e salva
 os resultados em experimentos_resultados.csv para comparação.
 
 Como usar:
@@ -8,8 +8,6 @@ Como usar:
   3. Acompanhe o progresso no terminal.
   4. Ao final, abra experimentos_resultados.csv para comparar.
 
-Métricas salvas por experimento:
-  mAP50, mAP50-95, Precision, Recall, tempo de treino (min)
 """
 
 import time
@@ -123,7 +121,7 @@ def main():
             "mAP50-95":   "",
             "precision":  "",
             "recall":     "",
-            "f1_score":   "",  # ← f1_score adicionado
+            "f1_score":   "", 
             "tempo_min":  "",
             "status":     "erro",
             "pasta_runs": "",
@@ -153,7 +151,7 @@ def main():
 
             row["status"] = "ok"
             print(f"  ✓ mAP50={row['mAP50']}  mAP50-95={row['mAP50-95']}  "
-                  f"P={row['precision']}  R={row['recall']}  F1={row['f1_score']}")  # ← f1_score no print
+                  f"P={row['precision']}  R={row['recall']}  F1={row['f1_score']}")
 
         except Exception as e:
             print(f"  ✗ ERRO: {e}")
