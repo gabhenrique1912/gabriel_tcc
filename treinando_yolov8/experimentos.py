@@ -26,19 +26,26 @@ from ultralytics import YOLO
 # ══════════════════════════════════════════════════════════════════════════════
 EXPERIMENTOS = [
     # ── Baseline ──────────────────────────────────────────────────────────────
-    #{"model": "yolov8n.pt", "imgsz": 512,  "epochs": 10, "batch": 4},
+    {"model": "yolov8n.pt", "imgsz": 512,  "epochs": 10, "batch": 4},
 
     # ── Variar tamanho de imagem ───────────────────────────────────────────────
-    #{"model": "yolov8n.pt", "imgsz": 320,  "epochs": 10, "batch": 4},
-    #{"model": "yolov8n.pt", "imgsz": 640,  "epochs": 10, "batch": 4},
+    {"model": "yolov8n.pt", "imgsz": 320,  "epochs": 10, "batch": 4},
+    {"model": "yolov8n.pt", "imgsz": 512,  "epochs": 10, "batch": 4},
+    {"model": "yolov8n.pt", "imgsz": 640,  "epochs": 10, "batch": 4},
 
     # ── Variar epochs ──────────────────────────────────────────────────────────
-    #{"model": "yolov8n.pt", "imgsz": 512,  "epochs": 20, "batch": 4},
+    {"model": "yolov8n.pt", "imgsz": 512,  "epochs": 20, "batch": 4},
+    {"model": "yolov8n.pt", "imgsz": 512,  "epochs": 35, "batch": 4},
     {"model": "yolov8n.pt", "imgsz": 512,  "epochs": 50, "batch": 4},
 
     # ── Variar versão do modelo ────────────────────────────────────────────────
-    #{"model": "yolov8s.pt", "imgsz": 512,  "epochs": 10, "batch": 4},
-    #{"model": "yolov8m.pt", "imgsz": 512,  "epochs": 10, "batch": 4},
+    {"model": "yolov8s.pt", "imgsz": 512,  "epochs": 10, "batch": 4},
+    {"model": "yolov8m.pt", "imgsz": 512,  "epochs": 10, "batch": 4},
+
+    # ── Variar versão do batch ────────────────────────────────────────────────
+    {"model": "yolov8n.pt", "imgsz": 512,  "epochs": 10, "batch": 8},
+    {"model": "yolov8n.pt", "imgsz": 512,  "epochs": 10, "batch": 16},
+    {"model": "yolov8n.pt", "imgsz": 512,  "epochs": 10, "batch": 32},
 ]
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -50,7 +57,7 @@ CSV_OUT   = Path(__file__).parent / "experimentos_resultados.csv"
 
 CSV_FIELDS = [
     "nome", "model", "imgsz", "epochs", "batch",
-    "mAP50", "mAP50-95", "precision", "recall",
+    "mAP50", "mAP50-95", "precision", "recall", "f1_score",  # ← f1_score adicionado
     "tempo_min", "status", "pasta_runs"
 ]
 
@@ -66,14 +73,18 @@ def nome_experimento(cfg: dict) -> str:
 def extrair_metricas(metrics) -> dict:
     """Extrai as métricas principais do objeto retornado por model.val()."""
     try:
+        p = float(metrics.box.mp)
+        r = float(metrics.box.mr)
+        f1 = round(2 * p * r / (p + r), 4) if (p + r) > 0 else 0.0  # ← F1 calculado
         return {
-            "mAP50":     round(float(metrics.box.map50),  4),
-            "mAP50-95":  round(float(metrics.box.map),    4),
-            "precision": round(float(metrics.box.mp),     4),
-            "recall":    round(float(metrics.box.mr),     4),
+            "mAP50":     round(float(metrics.box.map50), 4),
+            "mAP50-95":  round(float(metrics.box.map),   4),
+            "precision": round(p, 4),
+            "recall":    round(r, 4),
+            "f1_score":  f1,                                           # ← f1_score adicionado
         }
     except Exception:
-        return {"mAP50": "", "mAP50-95": "", "precision": "", "recall": ""}
+        return {"mAP50": "", "mAP50-95": "", "precision": "", "recall": "", "f1_score": ""}  # ← f1_score adicionado
 
 
 def salvar_linha(row: dict):
@@ -112,6 +123,7 @@ def main():
             "mAP50-95":   "",
             "precision":  "",
             "recall":     "",
+            "f1_score":   "",  # ← f1_score adicionado
             "tempo_min":  "",
             "status":     "erro",
             "pasta_runs": "",
@@ -141,7 +153,7 @@ def main():
 
             row["status"] = "ok"
             print(f"  ✓ mAP50={row['mAP50']}  mAP50-95={row['mAP50-95']}  "
-                  f"P={row['precision']}  R={row['recall']}")
+                  f"P={row['precision']}  R={row['recall']}  F1={row['f1_score']}")  # ← f1_score no print
 
         except Exception as e:
             print(f"  ✗ ERRO: {e}")

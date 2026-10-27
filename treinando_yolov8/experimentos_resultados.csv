@@ -1,1 +1,13 @@
-nome,model,imgsz,epochs,batch,mAP50,mAP50-95,precision,recall,tempo_min,status,pasta_runs
+nome,model,imgsz,epochs,batch,mAP50,mAP50-95,precision,recall,f1_score,tempo_min,status,pasta_runs
+yolov8n_img512_ep10_b4,yolov8n.pt,512,10,4,0.9113,0.6721,0.842,0.8846,0.8628,6.18,ok,C:\Users\Gabriel\OneDrive\Anexos\Desktop\gabriel_tcc\treinando_yolov8\runs\detect\yolov8n_img512_ep10_b4
+yolov8n_img320_ep10_b4,yolov8n.pt,320,10,4,0.8873,0.6491,0.7855,0.8839,0.8318,3.78,ok,C:\Users\Gabriel\OneDrive\Anexos\Desktop\gabriel_tcc\treinando_yolov8\runs\detect\yolov8n_img320_ep10_b4
+yolov8n_img512_ep10_b4,yolov8n.pt,512,10,4,0.8899,0.6542,0.8494,0.8642,0.8567,5.69,ok,C:\Users\Gabriel\OneDrive\Anexos\Desktop\gabriel_tcc\treinando_yolov8\runs\detect\yolov8n_img512_ep10_b4
+yolov8n_img640_ep10_b4,yolov8n.pt,640,10,4,0.8969,0.6649,0.8121,0.8981,0.8529,7.5,ok,C:\Users\Gabriel\OneDrive\Anexos\Desktop\gabriel_tcc\treinando_yolov8\runs\detect\yolov8n_img640_ep10_b4
+yolov8n_img512_ep20_b4,yolov8n.pt,512,20,4,0.9074,0.6872,0.8506,0.9007,0.8749,11.06,ok,C:\Users\Gabriel\OneDrive\Anexos\Desktop\gabriel_tcc\treinando_yolov8\runs\detect\yolov8n_img512_ep20_b4
+yolov8n_img512_ep35_b4,yolov8n.pt,512,35,4,0.9255,0.7111,0.866,0.8975,0.8815,19.52,ok,C:\Users\Gabriel\OneDrive\Anexos\Desktop\gabriel_tcc\treinando_yolov8\runs\detect\yolov8n_img512_ep35_b4
+yolov8n_img512_ep50_b4,yolov8n.pt,512,50,4,0.9174,0.7076,0.8622,0.9054,0.8833,27.7,ok,C:\Users\Gabriel\OneDrive\Anexos\Desktop\gabriel_tcc\treinando_yolov8\runs\detect\yolov8n_img512_ep50_b4
+yolov8s_img512_ep10_b4,yolov8s.pt,512,10,4,0.8997,0.668,0.8456,0.9056,0.8746,10.04,ok,C:\Users\Gabriel\OneDrive\Anexos\Desktop\gabriel_tcc\treinando_yolov8\runs\detect\yolov8s_img512_ep10_b4
+yolov8m_img512_ep10_b4,yolov8m.pt,512,10,4,0.8887,0.6568,0.8304,0.8834,0.8561,24.23,ok,C:\Users\Gabriel\OneDrive\Anexos\Desktop\gabriel_tcc\treinando_yolov8\runs\detect\yolov8m_img512_ep10_b4
+yolov8n_img512_ep10_b8,yolov8n.pt,512,10,8,0.9061,0.6676,0.8724,0.8443,0.8581,4.85,ok,C:\Users\Gabriel\OneDrive\Anexos\Desktop\gabriel_tcc\treinando_yolov8\runs\detect\yolov8n_img512_ep10_b8
+yolov8n_img512_ep10_b16,yolov8n.pt,512,10,16,0.9087,0.6773,0.8353,0.8964,0.8648,4.75,ok,C:\Users\Gabriel\OneDrive\Anexos\Desktop\gabriel_tcc\treinando_yolov8\runs\detect\yolov8n_img512_ep10_b16
+yolov8n_img512_ep10_b32,yolov8n.pt,512,10,32,0.912,0.6877,0.8298,0.9006,0.8638,6.68,ok,C:\Users\Gabriel\OneDrive\Anexos\Desktop\gabriel_tcc\treinando_yolov8\runs\detect\yolov8n_img512_ep10_b32
